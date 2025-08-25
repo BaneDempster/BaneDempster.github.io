@@ -1,77 +1,84 @@
 body {
-    background: rgb(255, 255, 255);
-    color: rgb(45, 45, 45);
-    padding: 10px;
-    font-family: Arial, sans-serif;
+  background-image: url("Images/Onepiece2.jpg");
+  background-repeat: no-repeat;
+  background-position: center below;
+  background-size: cover;
+  color: rgb(218, 241, 255);
+  padding: 10px;
+  font-family: Arial, sans-serif;
 }
 
 #all-contents {
-    max-width: 800px;
-    margin: auto;
+  max-width: 800px;
+  margin: auto;
 }
 
 /*navigation menu */
 nav {
-    background: rgb(207, 56, 233);
-    margin: 0 auto;
-    display: flex;
-    padding: 10px;
-    margin-bottom: 20px;
+  background-color: rgb(51, 175, 220);
+  margin: 0 auto;
+  display: flex;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 20px;
 }
 
 h1 {
-    display: flex;
-    align-items: center;
-    color: white;
-    flex: 1;
-    margin: 0;
+  display: flex;
+  align-items: center;
+  color: rgb(218, 241, 255);
+  flex: 1;
+  margin: 0;
 }
 
 #nav-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
 }
 
 .nav-li {
-    display: inline-block;
-    padding: 0 10px;
+  display: inline-block;
+  padding: 0 10px;
 }
 
 a {
-    text-decoration: none;
-    color: #fff;
+  text-decoration: none;
+  color: rgb(218, 241, 255);
 }
 
 /* main container area beneath menu */
 main {
-    background: rgb(193, 153, 43);
-    display: flex;
-    margin-top: 20px;
+  background: rgb(123, 202, 255);
+  display: flex;
+  margin-top: 20px;
+  border-radius: 20px;
 }
 
 .sidebar {
-    margin-right: 25px;
-    padding: 10px;
+  margin-right: 25px;
+  padding: 10px;
 }
 
 .sidebar-img {
-    width: 200px;
+  width: 250px;
+  height: 150px;
 }
 
 .content {
-    flex: 1;
-    padding: 15px;
+  flex: 1;
+  padding: 15px;
 }
 
 /* interests section styles */
 #interests {
-    border: 4px silver ridge;
-    padding: 8px;
-    margin-top: 20px;
+  border: 4px rgb(218, 241, 255) ridge;
+  padding: 8px;
+  margin-top: 20px;
 }
 
-h2, h3 {
-    margin: 0px;
+h2,
+h3 {
+  margin: 0px;
 }
