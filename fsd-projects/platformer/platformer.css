@@ -3,7 +3,8 @@ body {
 }
 
 canvas {
-  background-color: lightblue;
+  background-image: url("images/collectables/bustercall.jpeg");
+  background-size: cover;
   margin: 20px;
 }
 

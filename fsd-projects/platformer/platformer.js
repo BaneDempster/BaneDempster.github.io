@@ -27,24 +27,34 @@ $(function () {
     //////////////////////////////////
 
     // TODO 1 - Enable the Grid
-    // toggleGrid();
-
 
     // TODO 2 - Create Platforms
-
-
-
+    createPlatform(350, 400, 100, 50);
+    createPlatform(1200, 650, 100, 50);
+    createPlatform(1300, 520, 50, 25);
+    createPlatform(1000, 600, 50, 50);
+    createPlatform(700, 550, 40, 40);
+    createPlatform(600, 500, 25, 25);
+    createPlatform(650, 300, 100, 50);
+    createPlatform(950, 300, 50, 25);
+    createPlatform(1250, 300, 50, 50);
 
     // TODO 3 - Create Collectables
+    createCollectable("Jabra", 1350, 650);
+    createCollectable("Blueno", 710, 460);
+    createCollectable("Kalifa", 400, 320);
+    createCollectable("Kaku", 950, 200);
+    createCollectable("Lucci", 1250, 220);
+    createCollectable("Kumadori", 1310, 440);
+    createCollectable("Fukoro", 1230, 570);
 
-
-
-    
     // TODO 4 - Create Cannons
+    createCannon("top", 470, 2000);
+    createCannon("top", 990, 2000);
+    createCannon("top", 1300, 2000);
+    createCannon("left", 550, 2000);
+    createCannon("left", 200, 2000);
 
-
-    
-    
     //////////////////////////////////
     // ONLY CHANGE ABOVE THIS POINT //
     //////////////////////////////////
