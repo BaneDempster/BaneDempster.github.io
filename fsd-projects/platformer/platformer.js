@@ -40,13 +40,13 @@ $(function () {
     createPlatform(1250, 300, 50, 50);
 
     // TODO 3 - Create Collectables
-    createCollectable("Jabra", 1350, 650);
-    createCollectable("Blueno", 710, 460);
-    createCollectable("Kalifa", 400, 320);
-    createCollectable("Kaku", 950, 200);
-    createCollectable("Lucci", 1250, 220);
-    createCollectable("Kumadori", 1310, 440);
-    createCollectable("Fukoro", 1230, 570);
+    createCollectable("Jabra", 1350, 630, 1, 1);
+    createCollectable("Blueno", 690, 460, 1, 1);
+    createCollectable("Kalifa", 400, 300, 1, 1);
+    createCollectable("Kaku", 950, 200, 1, 1);
+    createCollectable("Lucci", 1250, 200, 1, 1);
+    createCollectable("Kumadori", 1310, 400, 1, 1);
+    createCollectable("Fukoro", 1230, 500, 1, 1);
 
     // TODO 4 - Create Cannons
     createCannon("top", 470, 2000);

@@ -75,7 +75,7 @@ let cannons = [];
 const cannonWidth = 118;
 const cannonHeight = 80;
 let projectiles = [];
-const defaultProjectileWidth = 24;
+const defaultProjectileWidth = 50;
 const defaultProjectileHeight = defaultProjectileWidth;
 const collectableWidth = 50;
 const collectableHeight = 80;
@@ -92,11 +92,11 @@ let halleImage;
 let animationDetails = {};
 
 var collectableList = {
-  Lucci: { image: "images/collectables/RobLucci.png" },
-  Kaku: { image: "images/collectables/Kaku.png" },
-  Kalifa: { image: "images/collectables/Kalifa.png" },
-  Blueno: { image: "images/collectables/Blueno.png" },
-  Fukoro: { image: "images/collectables/Fukoro.png" },
-  Jabra: { image: "images/collectables/Jabra.png" },
-  Kumadori: {image: "images/collectables/Kumadori.png"},
+  Lucci: { image: "images/collectables/roblucci.png" },
+  Kaku: { image: "images/collectables/kaku.png" },
+  Kalifa: { image: "images/collectables/kalifa.png" },
+  Blueno: { image: "images/collectables/blueno.png" },
+  Fukoro: { image: "images/collectables/fukoro.png" },
+  Jabra: { image: "images/collectables/jabra.png" },
+  Kumadori: {image: "images/collectables/kumadori.png"},
 };
