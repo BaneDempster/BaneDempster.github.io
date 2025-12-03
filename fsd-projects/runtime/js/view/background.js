@@ -41,8 +41,8 @@ var background = function (window) {
       // this currently fills the background with an obnoxious yellow;
       // you should modify both the height and color to suit your game
       var backgroundFill = draw.bitmap("img/eggheadIslandBackground.jpeg");
-      backgroundFill.scaleX = canvasWidth;
-      backgroundFill.scaleY = canvasHeight;
+      backgroundFill.scaleX = 300;
+      backgroundFill.scaleY = 300;
       background.addChild(backgroundFill);
 
       // TODO 2: - Add a moon and starfield
