@@ -11,25 +11,54 @@ var makeLevelData = function (window) {
     // TODO 12: change the below data
     var levelData = [
       {
-        name: "Robot Romp",
+        name: "Save Dr. Vegapunk",
         number: 1,
         speed: -3,
         gameItems: [
-          { type: "sawblade", x: 400, y: groundY },
-          { type: "sawblade", x: 600, y: groundY },
-          { type: "sawblade", x: 900, y: groundY },
+          { type: "sawblade", x: 400, y: groundY - 60 },
+          { type: "sawblade", x: 600, y: groundY - 50 },
+          { type: "sawblade", x: 900, y: groundY - 80 },
+          { type: "reward", x: 950, y: groundY - 250 },
+          { type: "reward", x: 650, y: groundY -220 }, 
+          { type: "enemy", x: 500, y: groundY - 250 },
+          { type: "enemy", x: 800, y: groundY - 250 },
+          { type: "enemy", x: 1200, y: groundY - 250 },
+          { type: "endOfLevelMarker", x: 1500, y: groundY - 250 },
         ],
       },
       {
-        name: "Robot Rampage",
+        name: "Fight St. Saturn",
         number: 2,
+        speed: -3,
+        gameItems: [
+          { type: "sawblade", x: 1500, y: groundY - 200 },
+          { type: "sawblade", x: 900, y: groundY - 230 },
+          { type: "sawblade", x: 1300, y: groundY - 260 },
+          { type: "sawblade", x: 350, y: groundY - 250 },
+          { type: "reward", x: 1000, y: groundY - 240 },
+          { type: "reward", x: 700, y: groundY -200 }, 
+          { type: "enemy", x: 500, y: groundY - 250 },
+          { type: "enemy", x: 800, y: groundY - 250 },
+          { type: "enemy", x: 1200, y: groundY - 250 },
+          { type: "endOfLevelMarker", x: 2000, y: groundY - 250 },
+        ],
+      },
+     {
+      name: "Escape Egghead Island",
+        number: 3,
         speed: -3,
         gameItems: [
           { type: "sawblade", x: 400, y: groundY },
           { type: "sawblade", x: 600, y: groundY },
           { type: "sawblade", x: 900, y: groundY },
+          { type: "reward", x: 950, y: groundY - 250 },
+          { type: "reward", x: 650, y: groundY -220 }, 
+          { type: "enemy", x: 500, y: groundY - 250 },
+          { type: "enemy", x: 800, y: groundY - 250 },
+          { type: "enemy", x: 1200, y: groundY - 250 },
+          { type: "endOfLevelMarker", x: 1500, y: groundY - 250 },
         ],
-      },
+     } 
     ];
     window.opspark.levelData = levelData;
   };
