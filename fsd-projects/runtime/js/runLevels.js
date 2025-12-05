@@ -37,15 +37,16 @@ var runLevels = function (window) {
 
     function createEnemy(x, y) {
       var enemy = game.createGameItem("enemy", 25);
-      var redSquare = draw.rect(50, 50, "red");
-      redSquare.x = -25;
-      redSquare.y = -25;
-      enemy.addChild(redSquare);
+      var pacifista = draw.bitmap("img/pacifista.png");
+      pacifista.x = -50;
+      pacifista.y = -50;
+      pacifista.scaleX = 0.55;
+      pacifista.scaleY = 0.55;
+      enemy.addChild(pacifista);
       enemy.x = x;
       enemy.y = groundY - y;
       game.addGameItem(enemy);
       enemy.velocityX = -5;
-      enemy.rotationalVelocity = 1;
       enemy.onPlayerCollision = function enemyHit() {
         game.changeIntegrity(-10);
       };
@@ -57,15 +58,16 @@ var runLevels = function (window) {
 
     function createReward(x, y) {
       var healthItem = game.createGameItem("healthItem", 25);
-      var greenSquare = draw.rect(50, 50, "green");
-      greenSquare.x = -25;
-      greenSquare.y = -25;
+      var greenSquare = draw.bitmap("img/cola.png");
+      greenSquare.x = -26;
+      greenSquare.y = -35;
+      greenSquare.scaleX = 0.5;
+      greenSquare.scaleY = 0.5;
       healthItem.addChild(greenSquare);
       healthItem.x = x;
       healthItem.y = groundY - y;
       game.addGameItem(healthItem);
       healthItem.velocityX = -5;
-      healthItem.rotationalVelocity = 1;
       healthItem.onPlayerCollision = function healthItemHit() {
         game.changeIntegrity(+50);
       };
@@ -77,9 +79,11 @@ var runLevels = function (window) {
 
     function createMarker(x, y) {
       var endOfLevelMarker = game.createGameItem("endOfLevelMarker", 25);
-      var purpleSquare = draw.rect(50, 50, "purple");
+      var purpleSquare = draw.bitmap("img/vegapunk.png");
       purpleSquare.x = -25;
-      purpleSquare.y = -25;
+      purpleSquare.y = -100;
+      purpleSquare.scaleX = 0.5;
+      purpleSquare.scaleY = 0.5;
       endOfLevelMarker.addChild(purpleSquare);
       endOfLevelMarker.x = x;
       endOfLevelMarker.y = groundY - y;

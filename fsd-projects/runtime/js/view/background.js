@@ -40,9 +40,11 @@ var background = function (window) {
       // TODO 1:
       // this currently fills the background with an obnoxious yellow;
       // you should modify both the height and color to suit your game
-      var backgroundFill = draw.bitmap("img/eggheadIslandBackground.jpeg");
-      backgroundFill.scaleX = 300;
-      backgroundFill.scaleY = 300;
+      var anything = draw.rect(0, 0, 50, 50, "#000");
+      var backgroundFill = draw.rect(canvasWidth, canvasHeight, "blue");
+      backgroundFill.scaleX = 3;
+      backgroundFill.scaleY = 3;
+      background.addChild(anything);
       background.addChild(backgroundFill);
 
       // TODO 2: - Add a moon and starfield
@@ -72,9 +74,9 @@ var background = function (window) {
       }
 
       // TODO 3: Part 1 - Add a tree
-      tree = draw.bitmap("img/tree.png");
+      tree = draw.bitmap("img/thousandSunny.png");
       tree.x = 200;
-      tree.y = groundY - 250;
+      tree.y = groundY - 210;
       background.addChild(tree);
     } // end of render function - DO NOT DELETE
 
