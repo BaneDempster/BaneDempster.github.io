@@ -44,7 +44,7 @@ var runLevels = function (window) {
       pacifista.scaleY = 0.55;
       enemy.addChild(pacifista);
       enemy.x = x;
-      enemy.y = groundY - y;
+      enemy.y = y;
       game.addGameItem(enemy);
       enemy.velocityX = -5;
       enemy.onPlayerCollision = function enemyHit() {
@@ -65,7 +65,7 @@ var runLevels = function (window) {
       greenSquare.scaleY = 0.5;
       healthItem.addChild(greenSquare);
       healthItem.x = x;
-      healthItem.y = groundY - y;
+      healthItem.y = y;
       game.addGameItem(healthItem);
       healthItem.velocityX = -5;
       healthItem.onPlayerCollision = function healthItemHit() {
@@ -86,7 +86,7 @@ var runLevels = function (window) {
       purpleSquare.scaleY = 0.5;
       endOfLevelMarker.addChild(purpleSquare);
       endOfLevelMarker.x = x;
-      endOfLevelMarker.y = groundY - y;
+      endOfLevelMarker.y = y;
       game.addGameItem(endOfLevelMarker);
       endOfLevelMarker.velocityX = -5;
       endOfLevelMarker.onPlayerCollision = function endOfLevelMarkerHit() {
