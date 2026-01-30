@@ -8,6 +8,7 @@ $("<div>")
   .css("position", "fixed")
   .css("top", top)
   .css("left", left)
+  .css("border-radius", "25px")
   .appendTo(elementID);
 }
 function rollDie(dieID){
@@ -45,9 +46,9 @@ function rollDie(dieID){
 }
 function handleClick(){
   rollDie("#die");
+  rollDie("#die2");
 }
 $("#die").on("click", handleClick);
-
 function handleClick2(){
   rollDie("#die2");
 }

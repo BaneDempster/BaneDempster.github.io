@@ -3,6 +3,7 @@
   width: 100px;
   background-color: lightgray; /* Feel free to customize */
   position: relative;
+  border-radius: 25px;
 }
 #die2 {
   height: 100px;
@@ -10,4 +11,5 @@
   background-color: rgb(1, 244, 208); /* Feel free to customize */
   margin: 25px;
   position: relative;
+  border-radius: 25px;
 }
