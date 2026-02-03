@@ -24,7 +24,7 @@ body {
 }
 
 .snake {
-  background-image:url("Images/marinebattleship.png");
+  background-color: green;
   z-index: 2;
 }
 
@@ -33,6 +33,6 @@ body {
 }
 
 .apple {
-  background-image:url("Images/luffyhead.png");
+  background-color:red;
   z-index: 1;
 }
