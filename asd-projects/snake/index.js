@@ -122,9 +122,9 @@ function moveSnake() {
     stored in the Array snake.body and each part knows its current 
     column/row properties. 
   */
-for (var i = snake.body.length - 1; i >= 0; i--){
-    var currentSnakeSquare = snake.body[0];
-    var snakeSquareInFront = snake.body[snake.body.length - 1];
+for (var i = snake.body.length - 1; i > 0; i--){
+    var currentSnakeSquare = snake.body[i];
+    var snakeSquareInFront = snake.body[i - 1];
 
     moveBodyAToBodyB(currentSnakeSquare, snakeSquareInFront);
 
@@ -176,10 +176,21 @@ function hasHitWall() {
     
     HINT: What will the row and column of the snake's head be if this were the case?
   */
-
-
-
+if(snake.head.row > ROWS){
+  return true;
+}
+else if(snake.head.row < 0){
+  return true;
+}
+else if(snake.head.column > COLUMNS){
+  return true;
+}
+else if(snake.head.column < 0){
+  return true;
+}else{
   return false;
+}
+
 }
 
 function hasCollidedWithApple() {
@@ -189,10 +200,12 @@ function hasCollidedWithApple() {
     
     HINT: Both the apple and the snake's head are aware of their own row and column
   */
+if(snake.head.row === apple.row && snake.head.column === apple.column){
+  return true;
+}else{
+   return false;
+}
 
-
-
-  return false;
 }
 
 function handleAppleCollision() {
@@ -218,10 +231,13 @@ function hasCollidedWithSnake() {
     HINT: Each part of the snake's body is stored in the snake.body Array. The
     head and each part of the snake's body also knows its own row and column.
   */
-
-
-
-  return false;
+for(var i = 1; i <= snake.body.length - 1; i++){
+  if(snake.head.row === snake.body[i].row && snake.head.column === snake.body[i].column){
+    return true;
+  }else{
+    return false;
+  }
+}
 }
 
 function endGame() {
