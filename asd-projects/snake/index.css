@@ -29,7 +29,7 @@ body {
 }
 
 #snake-head {
-  background-image:url("Images/marinebattleship.png");
+  background-color: green;
 }
 
 .apple {

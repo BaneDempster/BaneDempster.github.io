@@ -29,6 +29,8 @@ var KEY = {
   RIGHT: 39,
   DOWN: 40,
 };
+var colors = ["yellow", "purple", "black"];
+var colorIndex = 0;
 
 // interval variable required for stopping the update function when the game ends
 var updateInterval;
@@ -75,7 +77,7 @@ function update() {
     moveSnake();
   }
 
-  if (hasHitWall() || hasCollidedWithSnake()) {
+  if (hasHitWall() || hasCollidedWithSnake()){
     endGame();
   }
 
@@ -211,15 +213,14 @@ function hasCollidedWithSnake() {
     HINT: Each part of the snake's body is stored in the snake.body Array. The
     head and each part of the snake's body also knows its own row and column.
   */
-    for(var i = 1; i <= snake.body.length - 1; i++) {
+    for(var i = 2; i < snake.body.length; i++) {
     var currentBodyPart = snake.body[i];
     if(snake.head.row === currentBodyPart.row && 
        snake.head.column === currentBodyPart.column){
-      return true;
-    }else{
-      return false;
+        return true;
     }
-}
+} 
+return false;
 }
 function endGame() {
   // stop update function from running
@@ -287,6 +288,9 @@ function makeSnakeSquare(row, column) {
   // add the square to the snake’s body and update the tail
   snake.body.push(snakeSquare);
   snake.tail = snakeSquare;
+  snakeColor = colors[colorIndex];
+  colorIndex = (colorIndex + 1) % colors.length;
+  snake.tail.element.css("backgroundColor", snakeColor); 
 }
 
 /* 
@@ -341,12 +345,11 @@ function getRandomAvailablePosition() {
   while (!spaceIsAvailable) {
     randomPosition.column = Math.floor(Math.random() * COLUMNS);
     randomPosition.row = Math.floor(Math.random() * ROWS);
+    spaceIsAvailable = true;
     for(var i = 0; i <= snake.body.length - 1; i++){
       if(snake.body[i].row === randomPosition.row &&
          snake.body[i].column === randomPosition.column){
           spaceIsAvailable = false;
-      }else{
-          spaceIsAvailable = true;
       }
     }
     /*
