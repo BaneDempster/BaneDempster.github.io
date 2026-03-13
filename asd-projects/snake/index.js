@@ -32,6 +32,8 @@ var KEY = {
 var colors = ["yellow", "purple", "black"];
 var colorIndex = 0;
 
+//reverse controls challenge
+var isReversed = false; 
 // interval variable required for stopping the update function when the game ends
 var updateInterval;
 
@@ -108,6 +110,8 @@ function checkForNewDirection(event) {
 
   console.log(snake.head.direction); // uncomment me!
 }
+
+//reverse controls challenge
 
 function moveSnake() {
   /* 
@@ -333,6 +337,8 @@ function repositionSquare(square) {
   // position the square on the screen according to the row and column
   squareElement.css("left", column * SQUARE_SIZE + buffer);
   squareElement.css("top", row * SQUARE_SIZE + buffer);
+  
+  //reverse controls challenge
 }
 
 /* Returns a (row,column) Object that is not occupied by another game component
