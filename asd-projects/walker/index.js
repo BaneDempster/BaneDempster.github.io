@@ -17,6 +17,11 @@ function runProgram(){
     UP: 38,
     RIGHT: 39,
     DOWN: 40,
+    //CHALLENGE: add a set of keys for WASD
+    W: 87,
+    A: 65,
+    S: 83,
+    D: 68,
   };
   
   // Game Item Objects
@@ -27,6 +32,16 @@ function runProgram(){
     y: 0,
     speedX: 0,
     speedY: 0,
+    isTagger: false,
+  };
+
+  //CHALLENGE: create second walker 
+  var secondWalker = {
+    x: 5,
+    y: 0, 
+    speedX: 0,
+    speedY: 0,
+    isTagger: true,
   };
   // one-time setup
   var interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
@@ -39,7 +54,10 @@ function runProgram(){
   */
   $(document).on('keydown', handleKeyDown);
   //TODO 8: register another event listener for keyup events
-  $(document).on('keyup', handleKeyUp);                          
+  $(document).on('keyup', handleKeyUp);
+  //CHALLENGE: register event handlers to change box colore on click
+  $("#walker").on("click", handleClick);
+  $("#secondWalker").on("click", secondHandleClick);                          
 
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
@@ -56,6 +74,8 @@ function runProgram(){
     wallCollision();
     //TODO 6: call the redrawGameItem helper function inside the newFrame function
     redrawGameItem();
+    //CHALLENGE: call the collisionDetection helper function inside the newFrame function
+    collisionDetection(secondWalker, walker);
     
   }
   
@@ -81,6 +101,18 @@ function runProgram(){
     if(event.which === KEY.DOWN){
       walker.speedY = 5;
     }
+    if(event.which === KEY.W){
+      secondWalker.speedY = -5;
+    }
+    if(event.which === KEY.D){
+      secondWalker.speedX = 5;
+    }
+    if(event.which === KEY.S){
+      secondWalker.speedY = 5;
+    }
+    if(event.which === KEY.A){
+      secondWalker.speedX = -5;
+    }
     if(event.which === KEY.ENTER){
       console.log("enter pressed");
     }
@@ -99,6 +131,32 @@ function runProgram(){
     if(event.which === KEY.DOWN){
       walker.speedY = 0;
     }
+    if(event.which === KEY.A){
+      secondWalker.speedX = 0;
+    }
+    if(event.which === KEY.D){
+      secondWalker.speedX = 0;
+    }
+    if(event.which === KEY.W){
+      secondWalker.speedY = 0;
+    }
+    if(event.which === KEY.S){
+      secondWalker.speedY = 0;
+    }
+  }
+  //CHALLENGE: create the functions to change a walker's color when it is clicked on
+  function handleClick(){
+    var randomColor = "#000000".replace(/0/g, function () {
+    return (~~(Math.random() * 16)).toString(16);
+  });
+  $("#walker").css("background-color", randomColor);
+  }
+
+  function secondHandleClick(){
+    var randomColor = "#000000".replace(/0/g, function () {
+    return (~~(Math.random() * 16)).toString(16);
+  });
+  $("#secondWalker").css("background-color", randomColor);
   }
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
@@ -108,12 +166,16 @@ function runProgram(){
   function repositionGameItem(){
     walker.x += walker.speedX;
     walker.y += walker.speedY;
+    secondWalker.x += secondWalker.speedX;
+    secondWalker.y += secondWalker.speedY;
   }
 
   //TODO 6: create a helper function named redrawGameItem() that moves the walker on the screen
   function redrawGameItem(){
     $("#walker").css("top", walker.y);
     $("#walker").css("left", walker.x);
+    $("#secondWalker").css("left", secondWalker.x);
+    $("#secondWalker").css("top", secondWalker.y);
   }
 
   //TODO 9: create a helper function named wallCollision() that prevents the walker from leaving the board
@@ -132,8 +194,23 @@ function runProgram(){
     if(walker.y > maxBoardHeight - 50){
       walker.y -= walker.speedY;
     }
+     if(secondWalker.x < 0){
+      secondWalker.x -= secondWalker.speedX;
+    }
+    if(secondWalker.x > maxBoardWidth - 50){
+      secondWalker.x -= secondWalker.speedX;
+    }
+    if(secondWalker.y < 0){
+      secondWalker.y -= secondWalker.speedY;
+    }
+    if(secondWalker.y > maxBoardHeight - 50){
+      secondWalker.y -= secondWalker.speedY;
+    }
   }
 
+  function collisionDetection(chaser, runner){
+   
+  }
   function endGame() {
     // stop the interval timer
     clearInterval(interval);
@@ -141,5 +218,4 @@ function runProgram(){
     // turn off event handlers
     $(document).off();
   }
-  
 }
