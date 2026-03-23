@@ -28,7 +28,7 @@ function runProgram(){
 
   //TODO 4: Create walker variable and assign an object to it
   var walker = {
-    x: 0,
+    x: 350,
     y: 0,
     speedX: 0,
     speedY: 0,
@@ -52,10 +52,11 @@ function runProgram(){
 
   Note: You can have multiple event listeners for different types of events.
   */
+  //Register an event listener for keydown events
   $(document).on('keydown', handleKeyDown);
   //TODO 8: register another event listener for keyup events
   $(document).on('keyup', handleKeyUp);
-  //CHALLENGE: register event handlers to change box colore on click
+  //CHALLENGE: register event handlers to change box color on click
   $("#walker").on("click", handleClick);
   $("#secondWalker").on("click", secondHandleClick);                          
 
@@ -72,11 +73,11 @@ function runProgram(){
     repositionGameItem();
     //TODO 9: call the wallCollision helper function inside the newFrame function
     wallCollision();
-    //TODO 6: call the redrawGameItem helper function inside the newFrame function
-    redrawGameItem();
+ 
     //CHALLENGE: call the collisionDetection helper function inside the newFrame function
     collisionDetection(secondWalker, walker);
-    
+    //TODO 6: call the redrawGameItem helper function inside the newFrame function
+    redrawGameItem();   
   }
   
   /* 
@@ -117,7 +118,7 @@ function runProgram(){
       console.log("enter pressed");
     }
   }
-  //TODO 8: create the handleKeyUp function
+  //TODO 8: create the handleKeyUp function. When the player releases a key, the walkers stop moving. 
   function handleKeyUp(event){
     if(event.which === KEY.LEFT){
       walker.speedX = 0;
@@ -144,7 +145,7 @@ function runProgram(){
       secondWalker.speedY = 0;
     }
   }
-  //CHALLENGE: create the functions to change a walker's color when it is clicked on
+  //CHALLENGE: create functions to change a walker's color when it is clicked on
   function handleClick(){
     var randomColor = "#000000".replace(/0/g, function () {
     return (~~(Math.random() * 16)).toString(16);
@@ -209,8 +210,28 @@ function runProgram(){
   }
 
   function collisionDetection(chaser, runner){
-   
+    var chaserRight = chaser.x + 50;
+    var chaserBottom = chaser.y + 50;
+    var chaserLeft = chaser.x;
+    var chaserTop = chaser.y;
+    var runnerRight = runner.x + 50;
+    var runnerBottom = runner.y + 50;
+    var runnerLeft = runner.x;
+    var runnerTop = runner.y;
+    if(chaserRight > runnerLeft && chaserTop < runnerBottom && chaserBottom > runnerTop && chaserLeft < runnerRight){}
+      changeColor(chaser, runner);
+      }
   }
+  function changeColor(chaser, runner){
+    if(chaser.isTagger === true){
+      $(chaser).css("background-color", "blue");
+      $(runner).css("background-color", "red");
+    }else{
+      $(chaser).css("background-color", "red");
+      $(runner).css("background-color", "blue");
+    }
+  }
+
   function endGame() {
     // stop the interval timer
     clearInterval(interval);
@@ -218,4 +239,3 @@ function runProgram(){
     // turn off event handlers
     $(document).off();
   }
-}
