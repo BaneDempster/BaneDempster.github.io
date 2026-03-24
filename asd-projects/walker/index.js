@@ -73,7 +73,6 @@ function runProgram(){
     repositionGameItem();
     //TODO 9: call the wallCollision helper function inside the newFrame function
     wallCollision();
- 
     //CHALLENGE: call the collisionDetection helper function inside the newFrame function
     collisionDetection(secondWalker, walker);
     //TODO 6: call the redrawGameItem helper function inside the newFrame function
@@ -208,6 +207,11 @@ function runProgram(){
       secondWalker.y -= secondWalker.speedY;
     }
   }
+  var collided = false;
+  
+  function resetDetection(){
+    collided = false;
+  }
 
   function collisionDetection(chaser, runner){
     var chaserRight = chaser.x + 50;
@@ -218,19 +222,28 @@ function runProgram(){
     var runnerBottom = runner.y + 50;
     var runnerLeft = runner.x;
     var runnerTop = runner.y;
-    if(chaserRight > runnerLeft && chaserTop < runnerBottom && chaserBottom > runnerTop && chaserLeft < runnerRight){}
+    if(chaserRight > runnerLeft && chaserTop < runnerBottom && chaserBottom > runnerTop && chaserLeft < runnerRight){
+      collided = true;
+      setTimeout(resetDetection, 3000);
       changeColor(chaser, runner);
       }
   }
+
   function changeColor(chaser, runner){
-    if(chaser.isTagger === true){
-      $(chaser).css("background-color", "blue");
-      $(runner).css("background-color", "red");
-    }else{
-      $(chaser).css("background-color", "red");
-      $(runner).css("background-color", "blue");
+    if(chaser.isTagger){
+      $("#secondWalker").css("background-color", "blue");
+      $("#walker").css("background-color", "red");
+      chaser.isTagger = false;
+      runner.isTagger = true;
+    }
+    else if(runner.isTagger){
+      $("#secondWalker").css("background-color", "red");
+      $("#walker").css("background-color", "blue");
+      chaser.isTagger = true;
+      runner.isTagger = false;
     }
   }
+
 
   function endGame() {
     // stop the interval timer
@@ -239,3 +252,4 @@ function runProgram(){
     // turn off event handlers
     $(document).off();
   }
+}
