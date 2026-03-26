@@ -227,16 +227,15 @@ function runProgram(){
       changeColor(chaser, runner);
       changeTagger(chaser, runner);
       resetDetection();
-      setTimeout(changeTagger, 3000);
       }
   }
-     setTimeout(collisionDetection, 3000);
+    setTimeout(collisionDetection, 3000);
   function changeColor(chaser, runner){
-    if(chaser === tagger){
+    if(chaser.isTagger){
       $("#secondWalker").css("background-color", "blue");
       $("#walker").css("background-color", "red");
     }
-    else if(runner === tagger){
+    else if(runner.isTagger){
       $("#secondWalker").css("background-color", "red");
       $("#walker").css("background-color", "blue");
     }
