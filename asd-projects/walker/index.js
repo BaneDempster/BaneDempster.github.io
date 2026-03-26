@@ -43,6 +43,7 @@ function runProgram(){
     speedY: 0,
     isTagger: true,
   };
+
   // one-time setup
   var interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
 
@@ -74,7 +75,7 @@ function runProgram(){
     //TODO 9: call the wallCollision helper function inside the newFrame function
     wallCollision();
     //CHALLENGE: call the collisionDetection helper function inside the newFrame function
-    collisionDetection(secondWalker, walker);
+    collisionDetection();
     //TODO 6: call the redrawGameItem helper function inside the newFrame function
     redrawGameItem();   
   }
@@ -213,7 +214,10 @@ function runProgram(){
     collided = false;
   }
 
+
   function collisionDetection(chaser, runner){
+    var chaser = secondWalker;
+    var runner = walker;
     var chaserRight = chaser.x + 50;
     var chaserBottom = chaser.y + 50;
     var chaserLeft = chaser.x;
@@ -227,9 +231,9 @@ function runProgram(){
       changeColor(chaser, runner);
       changeTagger(chaser, runner);
       resetDetection();
+      setTimeout(collisionDetection, 3000);
       }
   }
-    setTimeout(collisionDetection, 3000);
   function changeColor(chaser, runner){
     if(chaser.isTagger){
       $("#secondWalker").css("background-color", "blue");
