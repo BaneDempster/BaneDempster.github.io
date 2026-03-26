@@ -224,26 +224,34 @@ function runProgram(){
     var runnerTop = runner.y;
     if(chaserRight > runnerLeft && chaserTop < runnerBottom && chaserBottom > runnerTop && chaserLeft < runnerRight){
       collided = true;
-      setTimeout(resetDetection, 3000);
       changeColor(chaser, runner);
+      changeTagger(chaser, runner);
+      resetDetection();
+      setTimeout(changeTagger, 3000);
       }
   }
-
+     setTimeout(collisionDetection, 3000);
   function changeColor(chaser, runner){
-    if(chaser.isTagger){
+    if(chaser === tagger){
       $("#secondWalker").css("background-color", "blue");
       $("#walker").css("background-color", "red");
+    }
+    else if(runner === tagger){
+      $("#secondWalker").css("background-color", "red");
+      $("#walker").css("background-color", "blue");
+    }
+  }
+
+  function changeTagger(chaser, runner){
+    if(chaser.isTagger){
       chaser.isTagger = false;
       runner.isTagger = true;
     }
     else if(runner.isTagger){
-      $("#secondWalker").css("background-color", "red");
-      $("#walker").css("background-color", "blue");
       chaser.isTagger = true;
       runner.isTagger = false;
     }
   }
-
 
   function endGame() {
     // stop the interval timer
