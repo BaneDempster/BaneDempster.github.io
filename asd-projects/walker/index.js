@@ -209,13 +209,11 @@ function runProgram(){
     }
   }
   var collided = false;
-  
-  function resetDetection(){
-    collided = false;
-  }
 
-
-  function collisionDetection(chaser, runner){
+  function collisionDetection(){
+    if(collided){
+      return;
+    }
     var chaser = secondWalker;
     var runner = walker;
     var chaserRight = chaser.x + 50;
@@ -230,10 +228,14 @@ function runProgram(){
       collided = true;
       changeColor(chaser, runner);
       changeTagger(chaser, runner);
-      resetDetection();
-      setTimeout(collisionDetection, 3000);
+      setTimeout(resetDetection, 3000);
       }
   }
+
+  function resetDetection(){
+    collided = false;
+  }
+
   function changeColor(chaser, runner){
     if(chaser.isTagger){
       $("#secondWalker").css("background-color", "blue");
