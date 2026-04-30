@@ -20,11 +20,10 @@ function resetAndRender() {
 // all of your apply functions
 function applyAndRender() {
   // Multiple TODOs: Call your apply function(s) here
-  applyFilter(increaseGreenByBlue);
+   applyFilter(increaseGreenByBlue);
   applyFilter(decreaseBlue);
   applyFilterNoBackground(reddify);
   applyFilterNoBackground(increaseGreenByBlue);
-
   // do not change the below line of code
   render($("#display"), image);
 }
@@ -133,8 +132,10 @@ function smudgeFilter(pixelArray){
 for(var r = 0; r < image.length; r++){
   var row = image[r];
   for(var c = 0; c < row.length; c++){
-    var average = (image[r][c] + image[r][c + 1]) / 2;
-
+  
+    var average = (pixelArray[r][c] + pixelArray[r + 1][c]) / 2;
+    pixelArray[r][c] = average;
   }
 }
 }
+applyFilter(smudgeFilter);
