@@ -22,7 +22,7 @@ async function bubbleSort(array){
         //Compare the value of the current element to the one before it
         if(array[j].value < array[j - 1].value){
             //If the previous element's value is greater than the current one, swap the two elements
-            swap(array, array[j], array[j - 1]);
+            swap(array, [j], [j - 1]);
             updateCounter(bubbleCounter);
             await sleep();
         }
@@ -34,12 +34,13 @@ async function bubbleSort(array){
 async function quicksort(array, left, right){
     if((right - left) > 0){
         var index = await partition(array, left, right);
-    }
-    if(left < (index - 1)){
+        
+        if(left < (index - 1)){
         await quicksort(array, left, index - 1);
     }
-    if(index < right){
+        if(right > index){
         await quicksort(array, index, right);
+    }
     }
 }
 
@@ -48,16 +49,16 @@ async function partition(array, left, right){
     var pivot = array[Math.floor((right + left) / 2)].value;
     while(left < right){
         while(array[left].value < pivot){
-            left += 1;
+            left++;
         }
         while(array[right].value > pivot){
-            right -= 1;
+            right--;
         }
-    }
-    if(left < right){
+        if(left < right){
         swap(array, left, right);
         updateCounter(quickCounter);
         await sleep();
+    }
     }
     return left + 1;
 }
