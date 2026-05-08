@@ -8,6 +8,8 @@ function runProgram(){
   ////////////////////////////////////////////////////////////////////////////////
 
   // Constant Variables
+   var updatedScore1 = 0;
+   var updatedScore2 = 0;
   const FRAME_RATE = 60;
   const FRAMES_PER_SECOND_INTERVAL = 1000 / FRAME_RATE;
   var KEYS = {
@@ -37,7 +39,8 @@ function runProgram(){
 
   // one-time setup
   let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
-  $(document).on('eventType', handleEvent);                           // change 'eventType' to the type of event you want to handle
+    $(document).on("keydown", handleKeydown);
+    $(document).on("keyup", handleKeyup);               // change 'eventType' to the type of event you want to handle
   startBall();
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
@@ -49,40 +52,46 @@ function runProgram(){
   */
   function newFrame() {
     moveObject(ball);
+    wallCollision(ball);
+    wallCollision(leftPaddle);
+    wallCollision(rightPaddle);
 
-  
+    if(doCollide(ball, leftpaddle)){
+    ball.speedX *= -1;
+  }
+
+  if(doCollide(ball, rightPaddle)){
+    ball.speedX *= -1;
+  }
 
   }
   
   /* 
   Called in response to events.
   */
-  function handleEvent(event) {
-    $(document).on("keydown", handleKeydown);
-    $(document).on("keyup", handleKeyup);
-  }
+  
 
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
   function handleKeydown(event){
     if(event.which === KEYS.UP){
-      rightPaddle.speedY = -5;
+      rightPaddle.speedY = -50;
       moveObject(rightPaddle);
       console.log("right paddle moving up");
     }
     if(event.which === KEYS.DOWN){
-      rightPaddle.speedY = 5;
+      rightPaddle.speedY = 50;
       moveObject(rightPaddle);
       console.log("right paddle moving down");
     }
     if(event.which === KEYS.W){
-      leftPaddle.speedY = -5;
+      leftPaddle.speedY = -50;
       moveObject(leftPaddle);
       console.log("left paddle moving up");
     }
     if(event.which === KEYS.S){
-      leftPaddle.speedY = 5;
+      leftPaddle.speedY = 50;
       moveObject(leftPaddle);
       console.log("left paddle moving down");
     }
@@ -104,10 +113,10 @@ function runProgram(){
   }
   
   function startBall(){
-    ball.x = 100;
-    ball.y = 100;
-    ball.speedX = (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1);
-    ball.speedY = 5;
+    ball.x = BOARD_WIDTH / 2;
+    ball.y = BOARD_HEIGHT / 2;
+    ball.speedX = (Math.random() * 2 + 1) * (Math.random() > 0.5 ? -1 : 1);
+    ball.speedY = 1;
   }
 
   function moveObject(object){
@@ -119,18 +128,42 @@ function runProgram(){
 
   function wallCollision(object){
     if(object.x < 0){
-      $("#player2 score").text(updatedScore);
+      updatedScore2++;
+      startBall();
+      $("#player2Score").text("Player 2 score: " + updatedScore2);
     }
     if(object.y < 0){
- 
+      object.speedY *= -1;
     }
     if((object.x + object.width) > BOARD_WIDTH){
-      $("#player1 score").text(updatedScore);
+      updatedScore1++;
+      startBall();
+      $("#player1Score").text("Player 1 score: " + updatedScore1);
     }
     if((object.y + object.height) > BOARD_HEIGHT){
-     
+     object.speedY *= -1;
     }
   }
+
+  function doCollide(obj1, obj2) {
+    var top1 = obj1.y;
+    var top2 = obj2.y;
+    var bottom1 = obj1.y + obj1.height;
+    var bottom2 = obj2.y + obj2.height;
+    var left1 = obj1.x;
+    var left2 = obj2.x;
+    var right1 = obj1.x + obj1.width;
+    var right2 = obj2.x + obj2.width;
+
+    if(left1 < right2 && 
+                right1 > left2 && 
+                top1 < bottom2 && 
+                bottom1 > top2){
+    return true;
+    }else{
+    return false;
+    }
+}
 
   function endGame() {
     // stop the interval timer

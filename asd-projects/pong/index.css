@@ -38,3 +38,17 @@ left: 350px;
   top: 150px;
   left: 50px;
 }
+
+#player1Score{
+  color: yellow;
+  position: absolute;
+  left: 25px;
+  font-size: 20px;
+}
+
+#player2Score {
+  color: blue;
+  position: absolute;
+  left: 280px;
+  font-size: 20px;
+}
