@@ -20,6 +20,7 @@ function runProgram(){
   }
   const BOARD_WIDTH = $("#board").width();
   const BOARD_HEIGHT = $("#board").height();
+  const $PADDLE_HEIGHT = $("#leftPaddle").height();
   // Game Item Objects
   var rightPaddle = objectMaker("#rightPaddle", 0, 0);
   var leftPaddle = objectMaker("#leftPaddle", 0, 0);
@@ -52,16 +53,26 @@ function runProgram(){
   */
   function newFrame() {
     moveObject(ball);
-    wallCollision(ball);
-    wallCollision(leftPaddle);
-    wallCollision(rightPaddle);
+    ballWallCollision(ball);
+    paddleWallCollision(leftPaddle);
+    paddleWallCollision(rightPaddle);
 
-    if(doCollide(ball, leftpaddle)){
+    if(doCollide(ball, leftPaddle)){
     ball.speedX *= -1;
   }
 
   if(doCollide(ball, rightPaddle)){
     ball.speedX *= -1;
+  }
+
+  if(updatedScore1 === 11){
+    alert("Marines win!");
+    endGame();
+  }
+
+  if(updatedScore2 === 11){
+    alert("Strawhats win!");
+    endGame();
   }
 
   }
@@ -115,8 +126,8 @@ function runProgram(){
   function startBall(){
     ball.x = BOARD_WIDTH / 2;
     ball.y = BOARD_HEIGHT / 2;
-    ball.speedX = (Math.random() * 2 + 1) * (Math.random() > 0.5 ? -1 : 1);
-    ball.speedY = 1;
+    ball.speedX = (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1);
+    ball.speedY = (Math.random() * 2 + 1) * (Math.random() > 0.5 ? -1 : 1);
   }
 
   function moveObject(object){
@@ -126,22 +137,33 @@ function runProgram(){
     $(object.id).css("top", object.y);
   }
 
-  function wallCollision(object){
+  function ballWallCollision(object){
     if(object.x < 0){
       updatedScore2++;
       startBall();
-      $("#player2Score").text("Player 2 score: " + updatedScore2);
+      $("#player2Score").text("Strawhats score: " + updatedScore2);
     }
     if(object.y < 0){
       object.speedY *= -1;
     }
+
     if((object.x + object.width) > BOARD_WIDTH){
       updatedScore1++;
       startBall();
-      $("#player1Score").text("Player 1 score: " + updatedScore1);
+      $("#player1Score").text("Marines score: " + updatedScore1);
     }
     if((object.y + object.height) > BOARD_HEIGHT){
      object.speedY *= -1;
+    }
+  }
+
+  function paddleWallCollision(object){
+    if(object.y < 0){
+      object.y = 0;
+    }
+
+    if((object.y + $PADDLE_HEIGHT) > BOARD_HEIGHT){
+      object.y = BOARD_HEIGHT - $PADDLE_HEIGHT;
     }
   }
 

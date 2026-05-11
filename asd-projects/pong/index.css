@@ -7,12 +7,12 @@ body {
   width: 440px;
   height: 440px;
   border: 1px solid white;
-  background-color: black;
+  background-image: url('img/ocean.png');
   position: relative;
 }
 
 #ball {
-  background-color: red;
+  background-color: black;
   width: 20px;
   height: 20px;
   border-radius: 10px;
@@ -22,8 +22,8 @@ body {
 }
 
 #rightPaddle {
-background-color: blue;
-width: 20px;
+background-image: url('img/thousandsunny.png');
+width: 80px;
 height: 80px;
 position: absolute;
 top: 150px;
@@ -31,24 +31,24 @@ left: 350px;
 }
 
 #leftPaddle {
-  background-color: yellow;
-  width: 20px;
+  background-image: url('img/marineship.png');
+  width: 80px;
   height: 80px;
   position: absolute;
   top: 150px;
-  left: 50px;
+  left: 20px;
 }
 
 #player1Score{
-  color: yellow;
+  color: black;
   position: absolute;
-  left: 25px;
-  font-size: 20px;
+  left: 20px;
+  font-size: 25px;
 }
 
 #player2Score {
-  color: blue;
+  color: red;
   position: absolute;
-  left: 280px;
-  font-size: 20px;
+  left: 250px;
+  font-size: 25px;
 }
