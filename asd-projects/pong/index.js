@@ -58,11 +58,11 @@ function runProgram(){
     paddleWallCollision(rightPaddle);
 
     if(doCollide(ball, leftPaddle)){
-    ball.speedX *= -1;
+    ball.speedX *= -1.025;
   }
 
   if(doCollide(ball, rightPaddle)){
-    ball.speedX *= -1;
+    ball.speedX *= -1.025;
   }
 
   if(updatedScore1 === 11){
